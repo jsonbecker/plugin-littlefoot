@@ -1,0 +1,31 @@
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/littlefoot/dist/littlefoot.css"
+/>
+<script
+  src="https://unpkg.com/littlefoot/dist/littlefoot.js"
+  type="application/javascript"
+></script>
+<script type="application/javascript">
+  const { littlefoot } = require('littlefoot')
+  {{ if .Site.Params.use_numbers }}
+    littlefoot(
+      {
+        numberResetSelector: {{ .Site.Params.post_separator }},
+        buttonTemplate: "
+        <button
+           aria-label="Footnote <% number %>"
+           class="littlefoot__button"
+           id="<% reference %>"
+           title="See Footnote <% number %>"
+        />
+           <% number %>
+        </button>"
+      }
+    )
+  {{ else }}
+    littlefoot()
+  {{ end }}
+</script>
+
+
